@@ -14,7 +14,7 @@ public class BinarySearchTree {
         }
     }
 
-    // Insert a value into the BST
+    // Insert a value into the Binary Search Tree
     public static Node insert(Node root, int value) {
 
         if (root == null) {
@@ -30,7 +30,7 @@ public class BinarySearchTree {
         return root;
     }
 
-    // Inorder traversal: Left -> Root -> Right
+    // Inorder: Left -> Root -> Right
     public static void inorder(Node root) {
 
         if (root != null) {
@@ -39,6 +39,30 @@ public class BinarySearchTree {
             System.out.print(root.value + " ");
 
             inorder(root.right);
+        }
+    }
+
+    // Preorder: Root -> Left -> Right
+    public static void preorder(Node root) {
+
+        if (root != null) {
+            System.out.print(root.value + " ");
+
+            preorder(root.left);
+
+            preorder(root.right);
+        }
+    }
+
+    // Postorder: Left -> Right -> Root
+    public static void postorder(Node root) {
+
+        if (root != null) {
+            postorder(root.left);
+
+            postorder(root.right);
+
+            System.out.print(root.value + " ");
         }
     }
 
@@ -73,14 +97,20 @@ public class BinarySearchTree {
         root = insert(root, 60);
         root = insert(root, 80);
 
-        System.out.println("Binary Search Tree:");
-
+        // Inorder traversal
+        System.out.println("Inorder Traversal:");
         inorder(root);
 
-        System.out.println();
+        // Preorder traversal
+        System.out.println("\nPreorder Traversal:");
+        preorder(root);
+
+        // Postorder traversal
+        System.out.println("\nPostorder Traversal:");
+        postorder(root);
 
         // Search examples
-        System.out.println("Search for 60: " + search(root, 60));
+        System.out.println("\nSearch for 60: " + search(root, 60));
         System.out.println("Search for 100: " + search(root, 100));
     }
 }
