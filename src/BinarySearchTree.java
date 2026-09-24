@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTree {
 
     // Node class
@@ -66,6 +69,33 @@ public class BinarySearchTree {
         }
     }
 
+    // Level Order Traversal / BFS
+    public static void levelOrder(Node root) {
+
+        if (root == null) {
+            return;
+        }
+
+        Queue<Node> queue = new LinkedList<>();
+
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+
+            Node current = queue.remove();
+
+            System.out.print(current.value + " ");
+
+            if (current.left != null) {
+                queue.add(current.left);
+            }
+
+            if (current.right != null) {
+                queue.add(current.right);
+            }
+        }
+    }
+
     // Search for a value
     public static boolean search(Node root, int value) {
 
@@ -97,19 +127,23 @@ public class BinarySearchTree {
         root = insert(root, 60);
         root = insert(root, 80);
 
-        // Inorder traversal
+        // Inorder
         System.out.println("Inorder Traversal:");
         inorder(root);
 
-        // Preorder traversal
+        // Preorder
         System.out.println("\nPreorder Traversal:");
         preorder(root);
 
-        // Postorder traversal
+        // Postorder
         System.out.println("\nPostorder Traversal:");
         postorder(root);
 
-        // Search examples
+        // BFS / Level Order
+        System.out.println("\nLevel Order Traversal (BFS):");
+        levelOrder(root);
+
+        // Search
         System.out.println("\nSearch for 60: " + search(root, 60));
         System.out.println("Search for 100: " + search(root, 100));
     }
